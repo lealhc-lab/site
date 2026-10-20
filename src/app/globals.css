@@ -10,6 +10,15 @@
   --muted: #8a94b3;
   --line: rgba(238, 243, 249, 0.14);
 
+  /* Blueprint */
+  --bg: #0a1551;
+  --bp-minor: rgba(90, 160, 255, 0.10);
+  --bp-major: rgba(90, 160, 255, 0.26);
+  --bp-tick: rgba(110, 175, 255, 0.75);
+  --bp-cell: 16px;   /* quadrícula fina */
+  --bp-major-cell: 80px; /* a cada 5 quadrículas */
+  --bp-ruler: 12px;  /* profundidade da régua nas bordas */
+
   --gutter: clamp(16px, 4vw, 56px);
   --max: 1440px;
   --font-display: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
@@ -21,7 +30,19 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--ink);
+  background-color: var(--bg);
+  /* Papel de blueprint: linhas maiores a cada 5 quadrículas + quadrícula fina */
+  background-image:
+    linear-gradient(var(--bp-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-major) 1px, transparent 1px),
+    linear-gradient(var(--bp-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-minor) 1px, transparent 1px);
+  background-size:
+    var(--bp-major-cell) var(--bp-major-cell),
+    var(--bp-major-cell) var(--bp-major-cell),
+    var(--bp-cell) var(--bp-cell),
+    var(--bp-cell) var(--bp-cell);
+  background-attachment: fixed;
   color: var(--paper);
   font-family: var(--font-display);
   font-size: 18px;
@@ -29,6 +50,37 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+
+/* Moldura de régua fixa nas bordas da tela (marcas curtas a cada 8px, longas a cada 40px) + quadrados nos cantos */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none;
+  --t: var(--bp-tick);
+  --r: var(--bp-ruler);
+  background:
+    /* cantos */
+    linear-gradient(var(--t), var(--t)) top 2px left 2px / 10px 10px no-repeat,
+    linear-gradient(var(--t), var(--t)) top 2px right 2px / 10px 10px no-repeat,
+    linear-gradient(var(--t), var(--t)) bottom 2px left 2px / 10px 10px no-repeat,
+    linear-gradient(var(--t), var(--t)) bottom 2px right 2px / 10px 10px no-repeat,
+    /* topo */
+    linear-gradient(90deg, var(--t) 1px, transparent 1px) top left 16px / 40px var(--r) repeat-x,
+    linear-gradient(90deg, var(--t) 1px, transparent 1px) top left 16px / 8px calc(var(--r) / 2) repeat-x,
+    /* base */
+    linear-gradient(90deg, var(--t) 1px, transparent 1px) bottom left 16px / 40px var(--r) repeat-x,
+    linear-gradient(90deg, var(--t) 1px, transparent 1px) bottom left 16px / 8px calc(var(--r) / 2) repeat-x,
+    /* esquerda */
+    linear-gradient(var(--t) 1px, transparent 1px) left top 16px / var(--r) 40px repeat-y,
+    linear-gradient(var(--t) 1px, transparent 1px) left top 16px / calc(var(--r) / 2) 8px repeat-y,
+    /* direita */
+    linear-gradient(var(--t) 1px, transparent 1px) right top 16px / var(--r) 40px repeat-y,
+    linear-gradient(var(--t) 1px, transparent 1px) right top 16px / calc(var(--r) / 2) 8px repeat-y;
+}
+/* Linha interna da moldura */
+body::after {
+  content: ""; position: fixed; inset: calc(var(--bp-ruler) + 4px); z-index: 100; pointer-events: none;
+  border: 1px solid var(--bp-major);
+}
+@media (max-width: 720px) { :root { --bp-ruler: 8px; } }
 
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
@@ -49,7 +101,7 @@ img { display: block; max-width: 100%; }
 /* ---------- Header ---------- */
 .header {
   position: sticky; top: 0; z-index: 50;
-  background: color-mix(in srgb, var(--ink) 88%, transparent);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -72,15 +124,6 @@ img { display: block; max-width: 100%; }
   padding: 96px 0 56px;
   border-bottom: 1px solid var(--line);
   overflow: hidden;
-}
-.hero-grid {
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: calc(100% / 12) 120px;
-  mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
-  opacity: .5;
 }
 .hero-meta { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); margin-bottom: 32px; flex-wrap: wrap; }
 .hero h1 {
@@ -140,7 +183,7 @@ img { display: block; max-width: 100%; }
 .case-card {
   position: relative; display: flex; flex-direction: column; justify-content: space-between;
   min-height: clamp(380px, 42vw, 600px); padding: clamp(24px, 3vw, 40px);
-  background: var(--ink); overflow: hidden;
+  background: var(--bg); overflow: hidden;
   transition: background .35s ease, color .35s ease;
 }
 .case-card[data-tone="deep"] { background: var(--deep); }
@@ -205,7 +248,7 @@ a.case-card:hover .case-arrow { transform: translate(6px, -6px); }
 }
 .photos figcaption {
   position: absolute; left: 12px; bottom: 12px; right: 12px;
-  color: var(--paper); background: var(--ink); padding: 6px 10px; width: fit-content;
+  color: var(--paper); background: var(--bg); padding: 6px 10px; width: fit-content;
 }
 .podcast {
   display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: center;

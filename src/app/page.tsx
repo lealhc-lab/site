@@ -6,7 +6,7 @@ import { Header, Footer } from "@/components/Header";
 const tones = ["deep", "blue", "cyan", "aqua"] as const;
 
 function Stamp() {
-  const label = `${site.role} · ${site.company} · ${site.location} · `;
+  const label = "Flávio Leal * Design * São Paulo - SP * Brasil * ";
   return (
     <svg className="stamp" viewBox="0 0 200 200" aria-hidden="true">
       <defs>
@@ -15,7 +15,7 @@ function Stamp() {
       <circle cx="100" cy="100" r="96" fill="none" stroke="var(--aqua)" strokeWidth="1" />
       <circle cx="100" cy="100" r="64" fill="none" stroke="var(--aqua)" strokeWidth="1" />
       <text>
-        <textPath href="#circle" textLength="500">{label + label}</textPath>
+        <textPath href="#circle" textLength="500">{label}</textPath>
       </text>
       <text x="100" y="112" textAnchor="middle" style={{ fontSize: 34, fontWeight: 700, letterSpacing: 0 }}>
         FL
@@ -31,12 +31,11 @@ export default function Home() {
       <main>
         {/* HERO */}
         <section className="hero">
-          <div className="hero-grid" />
           <Stamp />
           <div className="wrap">
             <div className="hero-meta mono">
               <span>{site.name}</span>
-              <span>Portfólio · {new Date().getFullYear()}</span>
+              <span>Portfólio</span>
             </div>
             <h1>
               {site.hero.greeting}

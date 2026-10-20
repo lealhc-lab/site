@@ -6,7 +6,7 @@ export function Header() {
     <header className="header">
       <div className="wrap">
         <Link href="/" className="logo" aria-label={site.name}>
-          flaviol<span>.</span>
+          Flávio<span>Leal</span>
         </Link>
         <nav className="nav mono" aria-label="Principal">
           <Link href="/#cases">Cases</Link>
