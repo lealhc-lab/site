@@ -15,10 +15,8 @@
   --bp-grid: #132274;
   --bp-minor: color-mix(in srgb, var(--bp-grid) 55%, transparent);
   --bp-major: var(--bp-grid);
-  --bp-tick: rgba(110, 175, 255, 0.75);
   --bp-cell: 16px;   /* quadrícula fina */
   --bp-major-cell: 80px; /* a cada 5 quadrículas */
-  --bp-ruler: 12px;  /* profundidade da régua nas bordas */
 
   --gutter: clamp(16px, 4vw, 56px);
   --max: 1440px;
@@ -51,37 +49,6 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-
-/* Moldura de régua fixa nas bordas da tela (marcas curtas a cada 8px, longas a cada 40px) + quadrados nos cantos */
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none;
-  --t: var(--bp-tick);
-  --r: var(--bp-ruler);
-  background:
-    /* cantos */
-    linear-gradient(var(--t), var(--t)) top 2px left 2px / 10px 10px no-repeat,
-    linear-gradient(var(--t), var(--t)) top 2px right 2px / 10px 10px no-repeat,
-    linear-gradient(var(--t), var(--t)) bottom 2px left 2px / 10px 10px no-repeat,
-    linear-gradient(var(--t), var(--t)) bottom 2px right 2px / 10px 10px no-repeat,
-    /* topo */
-    linear-gradient(90deg, var(--t) 1px, transparent 1px) top left 16px / 40px var(--r) repeat-x,
-    linear-gradient(90deg, var(--t) 1px, transparent 1px) top left 16px / 8px calc(var(--r) / 2) repeat-x,
-    /* base */
-    linear-gradient(90deg, var(--t) 1px, transparent 1px) bottom left 16px / 40px var(--r) repeat-x,
-    linear-gradient(90deg, var(--t) 1px, transparent 1px) bottom left 16px / 8px calc(var(--r) / 2) repeat-x,
-    /* esquerda */
-    linear-gradient(var(--t) 1px, transparent 1px) left top 16px / var(--r) 40px repeat-y,
-    linear-gradient(var(--t) 1px, transparent 1px) left top 16px / calc(var(--r) / 2) 8px repeat-y,
-    /* direita */
-    linear-gradient(var(--t) 1px, transparent 1px) right top 16px / var(--r) 40px repeat-y,
-    linear-gradient(var(--t) 1px, transparent 1px) right top 16px / calc(var(--r) / 2) 8px repeat-y;
-}
-/* Linha interna da moldura */
-body::after {
-  content: ""; position: fixed; inset: calc(var(--bp-ruler) + 4px); z-index: 100; pointer-events: none;
-  border: 1px solid var(--bp-major);
-}
-@media (max-width: 720px) { :root { --bp-ruler: 8px; } }
 
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
