@@ -12,8 +12,9 @@
 
   /* Blueprint */
   --bg: #0a1551;
-  --bp-minor: rgba(90, 160, 255, 0.10);
-  --bp-major: rgba(90, 160, 255, 0.26);
+  --bp-grid: #132274;
+  --bp-minor: color-mix(in srgb, var(--bp-grid) 55%, transparent);
+  --bp-major: var(--bp-grid);
   --bp-tick: rgba(110, 175, 255, 0.75);
   --bp-cell: 16px;   /* quadrícula fina */
   --bp-major-cell: 80px; /* a cada 5 quadrículas */
