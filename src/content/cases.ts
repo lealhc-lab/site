@@ -46,8 +46,7 @@ export const cases: Case[] = [
     summary: {
       context:
         "Nos 10 anos da marca, a home do R7 tinha conteúdo pulverizado, posições comerciais fixas e uma experiência mobile inferior ao desktop — embora mais de 70% dos acessos viessem do celular.",
-      // [CONFERIR] descreva com suas palavras o que foi decisão sua
-      role: "Condução de UX ponta a ponta: pesquisa, arquitetura da informação, protótipos e nova interface.",
+      role: "Condução do time de UX ponta a ponta: pesquisa, arquitetura de informação, protótipos e nova interface.",
       team: "Time de experiência do usuário com Conteúdo, Comercial, TI e BI, e consultorias Realtime Big Data, Web Estratégica (SEO) e Google.",
       outcome:
         "Nova arquitetura editorial no ar em setembro de 2019, 3 provas de conceito lançadas em produção e um grid flexível com novos formatos comerciais.",
