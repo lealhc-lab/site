@@ -158,15 +158,6 @@ export const cases: Case[] = [
         heading: "Uma nova arquitetura no ar",
         body: [
           "Desde 27 de setembro de 2019, o R7 opera com a nova organização: R7 Notícias, Esportes, Entretenimento e Life Style, com editorias criadas, divididas e renomeadas a partir da pesquisa — como Política, Bem-Estar, Filhos, Cinema e Séries e Games.",
-          "[PREENCHER] Se houver métricas pós-lançamento (audiência por editoria, tempo até a notícia no mobile, receita por formato), este é o lugar delas.",
-        ],
-      },
-      {
-        label: "Aprendizados",
-        heading: "O que eu levaria adiante",
-        body: [
-          // [CONFERIR] rascunho — reescreva com a sua visão
-          "Ouvir a operação foi tão importante quanto ouvir o leitor: os problemas da redação e do comercial eram os mesmos que o usuário sentia, vistos de outro lado. E pesquisas diferentes podem discordar — o trabalho de design é decidir qual sinal pesa mais e deixar a decisão explícita.",
         ],
       },
     ],
