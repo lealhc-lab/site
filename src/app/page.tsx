@@ -67,6 +67,10 @@ export default function Home() {
                 const linkable = !c.draft || (PREVIEW_TEMPLATE && i === 0);
                 const inner = (
                   <>
+                    {c.cover && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img className="case-cover-img" src={c.cover} alt="" aria-hidden="true" />
+                    )}
                     <div className="case-top mono">
                       <span>{c.company} · {c.year}</span>
                       {linkable && <span className="case-arrow" aria-hidden="true">↗</span>}

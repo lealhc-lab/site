@@ -267,3 +267,40 @@ a.case-card:hover .case-arrow { transform: translate(6px, -6px); }
 .case-body p { font-size: 20px; max-width: 62ch; }
 .case-body p + p { margin-top: 18px; }
 .draft-banner { background: var(--aqua); color: var(--ink); text-align: center; padding: 10px; }
+
+/* Case: capa, números, listas, citação e galerias */
+.case-cover { padding: 48px 0; border-bottom: 1px solid var(--line); }
+.case-cover img { width: 100%; max-height: 80vh; object-fit: cover; object-position: top; border: 1px solid var(--line); }
+.case-metrics {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+}
+.case-metrics > div { padding: 32px 24px 32px 0; }
+.case-metrics .stat-value { color: var(--aqua); }
+@media (max-width: 860px) { .case-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.case-body .section-label { display: block; margin-bottom: 16px; }
+.case-list { list-style: none; margin-top: 24px; border-top: 1px solid var(--line); max-width: 62ch; }
+.case-list li { padding: 14px 0 14px 32px; border-bottom: 1px solid var(--line); position: relative; font-size: 18px; }
+.case-list li::before { content: "→"; position: absolute; left: 0; color: var(--aqua); }
+.case-quote { margin-top: 32px; padding-left: 24px; border-left: 3px solid var(--aqua); max-width: 56ch; }
+.case-quote p { font-size: clamp(20px, 2vw, 26px); line-height: 1.35; }
+.case-quote cite { display: block; margin-top: 12px; color: var(--muted); font-style: normal; }
+.case-gallery { grid-column: 1 / -1; display: grid; gap: 16px; margin-top: 16px; }
+.case-gallery.pair { grid-template-columns: 1fr 1fr; align-items: start; }
+@media (max-width: 860px) { .case-gallery.pair { grid-template-columns: 1fr; } }
+.case-gallery figure { background: var(--paper); padding: clamp(8px, 1.5vw, 20px); }
+.case-gallery img { width: 100%; }
+.case-gallery figcaption { color: var(--ink); margin-top: 12px; }
+.case-next { display: block; padding: 72px 0; border-bottom: 1px solid var(--line); }
+.case-next .mono { color: var(--aqua); }
+.case-next-title { display: block; margin-top: 12px; font-weight: 800; font-stretch: 125%; font-size: clamp(28px, 4vw, 56px); line-height: 1; letter-spacing: -0.03em; transition: color .2s; }
+.case-next:hover .case-next-title { color: var(--aqua); }
+
+/* Capa no card da home */
+.case-card .case-cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: .16; transition: opacity .35s; }
+a.case-card:hover .case-cover-img { opacity: .3; }
+.case-card > *:not(.case-cover-img):not(.sticker) { position: relative; }
+@media (max-width: 560px) {
+  .tldr { grid-template-columns: 1fr; }
+  .tldr div { border-right: 0; border-bottom: 1px solid var(--line); padding-right: 0; }
+}
